@@ -1,0 +1,26 @@
+<div class="container">
+    <mat-card>
+        <mat-card-title>Registre-se</mat-card-title>
+        <form [formGroup]="userRegisterForms">
+            <mat-form-field>
+                <mat-label>Nome:</mat-label>
+                <input matInput placeholder="nome" formControlName="name" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Email:</mat-label>
+                <input matInput placeholder="email" formControlName="email" required>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Senha:</mat-label>
+                <input matInput placeholder="password" formControlName="password" required>
+            </mat-form-field>
+        </form>
+        <button mat-raised-button color="primary" (click)="registerUser()">
+            Cadastrar
+        </button>
+        <button mat-raised-button (click)="cancelRegister()">
+            Cancelar
+        </button>
+        <p>já tem uma conta? <a routerLink="/auth/login">fazer login</a></p>
+    </mat-card>
+</div>

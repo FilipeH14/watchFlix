@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core'
-import { BrowserModule } from '@angular/platform-browser'
+import { CommonModule } from '@angular/common'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
-import { AppRoutingModule } from './app-routing.module'
-import { AppComponent } from './app.component'
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MenuComponent } from './template/menu/menu.component'
-import { LayoutModule } from '@angular/cdk/layout'
+import { AuthRoutingModule } from './auth-routing.module'
+import { LoginComponent } from './login/login.component'
+import { RegisterComponent } from './register/register.component'
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 import { MatButtonModule } from '@angular/material/button'
@@ -16,16 +15,17 @@ import { MatListModule } from '@angular/material/list'
 import { MatFormFieldModule } from '@angular/material/form-field'
 import { MatInputModule } from '@angular/material/input'
 
+
 @NgModule({
   declarations: [
-    AppComponent,
-    MenuComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    LayoutModule,
+    CommonModule,
+    AuthRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -34,8 +34,6 @@ import { MatInputModule } from '@angular/material/input'
     MatListModule,
     MatFormFieldModule,
     MatInputModule
-  ],
-  providers: [],
-  bootstrap: [ AppComponent ]
+  ]
 })
-export class AppModule { }
+export class AuthModule { }
