@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
 
@@ -8,6 +9,12 @@ import { User } from '../models/user'
   providedIn: 'root'
 })
 export class AuthService {
+
+  public token?: string
+
+  constructor(
+    private router: Router
+  ) { }
 
   public toRegisterUser(user: User): void {
     console.log(`Chegamos até o serviço cadastro ${user}`)
@@ -20,15 +27,21 @@ export class AuthService {
   }
 
   public toLogin(email: string, password: string): void {
-    console.log(`Chegamos até o serviço login email: ${email}`)
-    console.log(`Chegamos até o serviço login senha: ${password}`)
 
     const auth = getAuth()
+    const user = auth.currentUser
 
     signInWithEmailAndPassword(auth, email, password)
-      .then(resp => console.log(resp))
+      .then(
+        (response: any) => {
+          user?.getIdToken()
+            .then((userToken: string) => {
+              this.token = userToken
+              this.router.navigate(['home'])
+            })
+        }
+      )
       .catch((error: Error) => console.log(error))
   }
 
-  constructor() { }
 }
