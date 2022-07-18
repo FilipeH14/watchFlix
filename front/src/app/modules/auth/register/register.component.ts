@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
 
     this.auth.toRegisterUser(user)
 
-    // console.log(user)
+    this.router.navigate(['login'])
   }
 
   cancelRegister(): void {

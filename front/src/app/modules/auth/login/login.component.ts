@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 
+import { AuthService } from '../../../shared/services/auth.service'
+
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 
@@ -17,14 +19,19 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required)
   })
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private auth: AuthService) { }
 
   ngOnInit(): void {
     
   }
 
-  loginUser(): void {
-    console.log(this.userLoginForms.value)
+  authUser(): void {
+    this.auth.toLogin(
+      this.userLoginForms.value.email, 
+      this.userLoginForms.value.password
+    )
   }
 
 }
